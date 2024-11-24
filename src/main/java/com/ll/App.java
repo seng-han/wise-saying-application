@@ -1,17 +1,18 @@
 package com.ll;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class App {
     private final Scanner scanner;
     private int lastId;
-    private final WiseSaying[] wiseSayings;
-    private int wiseSayingsSize;
+    private final List<WiseSaying> wiseSayings;
     public App() {
         scanner = new Scanner(System.in);
         lastId = 0;
-        wiseSayings = new WiseSaying[100];
-        wiseSayingsSize = 0;
+        wiseSayings = new ArrayList<>();
     }
     public void run() {
         System.out.println("== 명언 앱 ==");
@@ -33,8 +34,9 @@ public class App {
     private WiseSaying addWiseSaying(String content, String author) {
         int id = ++lastId;
         WiseSaying wiseSaying = new WiseSaying(id, content, author);
-        wiseSayings[wiseSayingsSize] = wiseSaying;
-        wiseSayingsSize++;
+        wiseSayings.add(wiseSaying);
+        System.out.println("wiseSayings =" + wiseSayings);
+
         return wiseSaying;
     }
     private void actionAdd() {
@@ -49,7 +51,6 @@ public class App {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
         for (WiseSaying wiseSaying : wiseSayings) {
-            if (wiseSaying == null) break;
             System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getAuthor()));
         }
     }
