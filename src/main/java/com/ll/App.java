@@ -73,6 +73,7 @@ public class App {
         boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id); //람다함수
 
         if (removed) System.out.println("%d 학번 명언을 삭제했습니다.".formatted(id));
+        else System.out.println("%d번 명언은 존재하지 않습니다".formatted(id));
 
     }
 }
