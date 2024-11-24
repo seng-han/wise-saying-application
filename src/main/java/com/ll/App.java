@@ -27,8 +27,12 @@ public class App {
                 actionAdd();
             } else if (cmd.equals("목록")) {
                 actionList();
-            } else if ( cmd.equals("삭제?id=1")){
-                actionDelete(1);
+            } else if (cmd.startsWith("삭제")) {
+                String idStr = cmd.substring(6); //삭제?id=10이니깐 인덱스 6번부터 인식.
+                int id = Integer.parseInt(idStr);//문자열을 정수로 변환 -암기
+
+                actionDelete(id);
+
             }
         }
         scanner.close();
