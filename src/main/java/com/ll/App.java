@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 
 public class App {
-    private Scanner scanner;
+    private final Scanner scanner;
     private int lastId;
-    private WiseSaying[] wiseSayings;
+    private final WiseSaying[] wiseSayings;
     private int wiseSayingsSize;
     public App() {
         scanner = new Scanner(System.in);
@@ -43,14 +43,14 @@ public class App {
         System.out.print("작가 : ");
         String author = scanner.nextLine();
         WiseSaying wiseSaying = addWiseSaying(content, author);
-        System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.id));
+        System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
     }
     private void actionList() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
         for (WiseSaying wiseSaying : wiseSayings) {
             if (wiseSaying == null) break;
-            System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.author, wiseSaying.content));
+            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getAuthor()));
         }
     }
 }
