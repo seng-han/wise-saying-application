@@ -30,9 +30,11 @@ public class App {
             } else if (cmd.startsWith("삭제")) {
                 String idStr = cmd.substring(6); //삭제?id=10이니깐 인덱스 6번부터 인식.
                 int id = Integer.parseInt(idStr);//문자열을 정수로 변환 -암기
-
                 actionDelete(id);
-
+            } else if (cmd.startsWith("수정")) {
+                String idStr = cmd.substring(6);
+                int id = Integer.parseInt(idStr);
+                actionModify(id);
             }
         }
         scanner.close();
@@ -74,6 +76,28 @@ public class App {
 
         if (removed) System.out.println("%d 학번 명언을 삭제했습니다.".formatted(id));
         else System.out.println("%d번 명언은 존재하지 않습니다".formatted(id));
+    }
+    private void actionModify(int id){
+        WiseSaying foundWiseSaying = null;
 
+        for (WiseSaying wiseSaying : wiseSayings) {
+            if (wiseSaying.getId() == id) {
+                foundWiseSaying = wiseSaying; //만약 없으면 여전히 null이니까 break;
+                break;
+            }
+        }
+        if (foundWiseSaying == null){
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+        System.out.println("명언(기존) : %s".formatted(foundWiseSaying.getContent()));
+        System.out.print("명언 : ");
+        String content = scanner.nextLine();
+        System.out.println("작가(기존) : %s".formatted(foundWiseSaying.getAuthor()));
+        System.out.print("작가 : ");
+        String author = scanner.nextLine();
+        foundWiseSaying.setContent(content);
+        foundWiseSaying.setAuthor(author);
+        System.out.println("%d번 명언이 수정되었습니다.".formatted(id));
     }
 }
